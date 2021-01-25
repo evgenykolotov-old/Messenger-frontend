@@ -22,7 +22,7 @@
   opacity: 0.5;
 }
 
-.auth__register-link {
+.auth-register__link {
   text-align: center;
   display: block;
   font-size: 16px;
