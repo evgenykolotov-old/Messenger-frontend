@@ -41,11 +41,11 @@
   display: flex;
 }
 
-.item-info__top strong {
+.item-info__top b {
   font-weight: 500;
   font-size: 14px;
   flex: 1;
-  margin-bottom: 6px;
+  /* margin-bottom: 6px; */
 }
 
 .item-info__top span {
@@ -63,6 +63,7 @@
   width: 220px;
   height: 1.2em;
   white-space: nowrap;
+  margin-bottom: 0;
 }
 
 .item-info__count {
@@ -83,7 +84,8 @@
   box-shadow: 0 0 0px 3px #fff;
 }
 
-.message__icon--readed {
+.dialog-item .message__icon--readed {
+  position: absolute;
   bottom: 0;
   left: auto;
   right: 0;

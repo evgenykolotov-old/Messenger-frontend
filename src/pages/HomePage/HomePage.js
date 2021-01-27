@@ -1,18 +1,43 @@
 import React from 'react';
+import Dialogs from '../../components/Dialogs/Dialogs';
 import Message from '../../components/Message/Message';
 
 const HomePage = () => {
   return (
     <section className="home">
-      <div className="dialogs">
-        <Message
-          avatar="https://sun1-23.userapi.com/impg/ANCgTmfAm_4J0wU_ZHPJqOLRZhWD0MTRJ6zqWg/3CirrRrlJTE.jpg?size=50x0&quality=96&crop=81,81,648,648&sign=dcb02c0c6a7b03852ac5fdfbe0c8b782&ava=1"
-          text="Hello, I am Evgeny Kolotov"
-          date="Sun Apr 21 2019 21:59:29"
-          isMe={true}
-          isReaded={true}
-        />
-      </div>
+      <Dialogs
+        userId={1}
+        items={[
+          {
+            _id: Math.random(),
+            text: 'Мы все свидетельствуем Вам глубочайшее почтение и целлуем ручки',
+            isReaded: false,
+            created_at: new Date('Tue Jan 26 2021 22:12:15'),
+            user: {
+              _id: 2,
+              fullname: 'Фёдор Достоевский',
+              avatar: null,
+            },
+          },
+          {
+            _id: Math.random(),
+            text: 'Мы все свидетельствуем Вам глубочайшее почтение и целлуем ручки',
+            isReaded: false,
+            created_at: new Date(),
+            user: {
+              _id: 1,
+              fullname: 'Евгений Колотов',
+              avatar: null,
+            },
+          },
+        ]}
+      />
+
+      <Message
+        date={new Date('Tue Jan 26 2021 22:12:15')}
+        audio="https://notificationsounds.com/storage/sounds/file-sounds-1148-juntos.mp3"
+        avatar="https://sun1-88.userapi.com/impg/c853520/v853520919/24a302/XGrlYioAMQE.jpg?size=50x0&quality=96&crop=3,202,1617,1617&sign=fd2f397a25205ee0b9ef1700fc755b76&ava=1"
+      />
     </section>
   );
 };

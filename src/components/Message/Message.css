@@ -122,6 +122,56 @@
   height: 150px;
 }
 
+.message--is-audio audio {
+  display: none;
+}
+
+.message--is-audio .message__bubble {
+  position: relative;
+  width: 280px;
+  overflow: hidden;
+}
+
+.message-audio-info {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.message-audio-info__button button {
+  border: 0;
+  cursor: pointer;
+  background-color: #0f3997;
+  width: 28px;
+  height: 28px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.message-audio-info__button button img {
+  height: 13px;
+}
+
+.message-audio-info__duration {
+  font-size: 12px;
+  opacity: 0.5;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.message-audio__progress {
+  position: absolute;
+  background-color: #418fff;
+  width: 40%;
+  height: 100%;
+  left: 0;
+  bottom: 0;
+  transition: width 0.5s ease;
+}
+
 @keyframes typingAnimation {
   from {
     opacity: 0.2;
