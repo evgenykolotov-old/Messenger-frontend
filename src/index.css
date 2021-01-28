@@ -5,6 +5,10 @@
   outline: none;
 }
 
+body {
+  background-color: #f4f7fd;
+}
+
 html,
 body,
 #root,

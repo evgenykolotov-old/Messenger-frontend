@@ -1,22 +1,11 @@
 import React from 'react';
 import classnames from 'classnames';
+
+import './DialogItem.css';
 import IconReaded from '../../components/IconReaded/IconReaded';
+import Avatar from '../Avatar/Avatar';
 import format from 'date-fns/format';
 import isToday from 'date-fns/isToday';
-import './DialogItem.css';
-
-const getAvatar = (avatar) => {
-  if (!avatar) {
-    return (
-      <img
-        className="dialog-item__image"
-        src="https://sun1-88.userapi.com/impg/c853520/v853520919/24a302/XGrlYioAMQE.jpg?size=50x0&quality=96&crop=3,202,1617,1617&sign=fd2f397a25205ee0b9ef1700fc755b76&ava=1"
-        alt=""
-      />
-    );
-  }
-  return <img src={avatar} alt="" className="dialog-item__image" />;
-};
 
 const getMessageTime = (created_at) => {
   if (isToday(created_at)) {
@@ -27,7 +16,9 @@ const getMessageTime = (created_at) => {
 
 const DialogItem = ({ user, unreaded, isMe, created_at, text }) => (
   <div className={classnames('dialog-item', { 'dialog-item--online': user.isOnline })}>
-    <div className="dialog-item__avatar">{getAvatar(user.avatar)}</div>
+    <div className="dialog-item__avatar">
+      <Avatar user={user} />
+    </div>
     <div className="item-info">
       <div className="item-info__top">
         <b>{user.fullname}</b>
