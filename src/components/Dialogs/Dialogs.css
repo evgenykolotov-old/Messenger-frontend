@@ -1,3 +1,20 @@
 .dialogs {
-  width: 300px;
+  height: 100%;
+  overflow: auto;
+}
+
+.dialogs__search {
+  padding: 0 20px 20px 20px;
+}
+
+.dialogs__search .ant-input,
+.dialogs__search .ant-btn {
+  height: 38px;
+  padding: 4px 11px 6px;
+  background-color: #f7f8f9;
+}
+
+.dialogs__search .ant-btn {
+  height: 38px;
+  padding: 6px;
 }

@@ -1,0 +1,14 @@
+.chat-dialog__messages {
+  height: calc(100% - 138px);
+  overflow: auto;
+  padding: 20px;
+  padding-bottom: 0;
+  position: relative;
+}
+
+.chat-dialog__messages .ant-empty {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

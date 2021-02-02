@@ -1,6 +1,13 @@
 .dialog-item {
   display: flex;
-  margin-bottom: 20px;
+  padding: 10px 20px;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.dialog-item.active,
+.dialog-item:hover {
+  background-color: #f3f7ff;
 }
 
 .dialog-item__avatar {

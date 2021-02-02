@@ -1,8 +1,9 @@
 import React from 'react';
-import { Button as BaseButton } from 'antd';
 import PropsTypes from 'prop-types';
 import classnames from 'classnames';
+
 import './Button.css';
+import { Button as BaseButton } from 'antd';
 
 const Button = (props) => (
   <BaseButton

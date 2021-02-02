@@ -5,6 +5,8 @@ import classnames from 'classnames';
 import './Message.css';
 import Time from '../Time/Time';
 import IconReaded from '../IconReaded/IconReaded';
+import Avatar from '../Avatar/Avatar';
+
 import waveSvg from '../../assests/wave.svg';
 import playSvg from '../../assests/play.svg';
 import pauseSvg from '../../assests/pause.svg';
@@ -81,7 +83,7 @@ const MessageAudio = ({ audioSrc }) => {
   );
 };
 
-const Message = ({ avatar, user, text, date, isMe, isReaded, attachments, isTyping, audio }) => {
+const Message = ({ user, text, created_at, isMe, isReaded, attachments, isTyping, audio }) => {
   return (
     <div
       className={classnames('message', {
@@ -95,7 +97,7 @@ const Message = ({ avatar, user, text, date, isMe, isReaded, attachments, isTypi
         <IconReaded isMe={isMe} isReaded={isReaded} />
 
         <div className="message-avatar">
-          <img className="message-avatar__image" src={avatar} alt={`Avatar ${user.fullname}`} />
+          <Avatar user={user} />
         </div>
 
         <div className="message-info">
@@ -125,9 +127,9 @@ const Message = ({ avatar, user, text, date, isMe, isReaded, attachments, isTypi
             </div>
           )}
 
-          {date && (
+          {created_at && (
             <span className="message__date">
-              <Time date={date} />
+              <Time date={new Date(created_at)} />
             </span>
           )}
         </div>

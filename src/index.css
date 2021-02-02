@@ -25,3 +25,18 @@ body,
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+.ant-btn-circle {
+  border: none;
+  box-shadow: none;
+  color: #202020 !important;
+  opacity: 0.4;
+}
+
+.ant-btn-circle:hover {
+  opacity: 1;
+}
+
+.ant-btn-circle:after {
+  display: none;
+}
