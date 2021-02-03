@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -11,54 +11,10 @@ import waveSvg from '../../assests/wave.svg';
 import playSvg from '../../assests/play.svg';
 import pauseSvg from '../../assests/pause.svg';
 import converCurrentTime from '../../utils/converCurrentTime';
+import { useMessageAudio } from './messageHooks';
 
 const MessageAudio = ({ audioSrc }) => {
-  const audioElem = useRef(null);
-  const [isPlaying, setPlaying] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [currentTime, setCurrentTime] = useState(0);
-
-  const togglePlay = () => {
-    if (!isPlaying) {
-      audioElem.current.play();
-    } else {
-      audioElem.current.pause();
-    }
-  };
-
-  useEffect(() => {
-    audioElem.current.addEventListener(
-      'playing',
-      () => {
-        setPlaying(true);
-      },
-      false
-    );
-
-    audioElem.current.addEventListener(
-      'ended',
-      () => {
-        setPlaying(false);
-        setProgress(0);
-        setCurrentTime(0);
-      },
-      false
-    );
-
-    audioElem.current.addEventListener(
-      'pause',
-      () => {
-        setPlaying(false);
-      },
-      false
-    );
-
-    audioElem.current.addEventListener('timeupdate', () => {
-      const duration = (audioElem.current && audioElem.current.duration) || 0;
-      setCurrentTime(audioElem.current.currentTime);
-      setProgress((audioElem.current.currentTime / duration) * 100);
-    });
-  }, []);
+  const { isPlaying, progress, currentTime, togglePlay, audioElem } = useMessageAudio();
 
   return (
     <div className="message-audio">
@@ -129,7 +85,7 @@ const Message = ({ user, text, created_at, isMe, isReaded, attachments, isTyping
 
           {created_at && (
             <span className="message__date">
-              <Time date={new Date(created_at)} />
+              <Time date={created_at} />
             </span>
           )}
         </div>
@@ -138,12 +94,8 @@ const Message = ({ user, text, created_at, isMe, isReaded, attachments, isTyping
   );
 };
 
-Message.defaultProps = {
-  user: {},
-};
-
 Message.propTypes = {
-  avatar: PropTypes.string,
+  avatar: PropTypes.string || null,
   text: PropTypes.string,
   date: PropTypes.string,
   user: PropTypes.object,

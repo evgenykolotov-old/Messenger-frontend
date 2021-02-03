@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Input } from 'antd';
+import { SmileOutlined, CameraOutlined, AudioOutlined, SendOutlined } from '@ant-design/icons';
 import { UploadField } from '@navjobs/upload';
 import { Picker } from 'emoji-mart';
-
 import './ChatInput.css';
-import { SmileOutlined, CameraOutlined, AudioOutlined, SendOutlined } from '@ant-design/icons';
 
 const ChatInput = () => {
   const [value, setValue] = useState('');

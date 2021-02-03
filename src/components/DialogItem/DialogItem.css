@@ -36,32 +36,32 @@
   border: 3px solid #fff;
 }
 
-.item-info {
+.dialog-item-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
   flex: 1;
 }
 
-.item-info__top {
+.dialog-item-info__top {
   display: flex;
 }
 
-.item-info__top b {
+.dialog-item-info__top b {
   font-weight: 500;
   font-size: 14px;
   flex: 1;
 }
 
-.item-info__top span {
+.dialog-item-info__top span {
   opacity: 0.5;
 }
 
-.item-info__bottom {
+.dialog-item-info__bottom {
   position: relative;
 }
 
-.item-info__bottom p {
+.dialog-item-info__bottom p {
   opacity: 0.7;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -71,7 +71,7 @@
   margin-bottom: 0;
 }
 
-.item-info__count {
+.dialog-item-info__count {
   position: absolute;
   right: 0;
   bottom: 0;

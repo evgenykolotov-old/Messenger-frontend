@@ -1,32 +1,37 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Input, Empty } from 'antd';
 
 import './Dialogs.css';
 import DialogItem from '../DialogItem/DialogItem';
 import orderBy from 'lodash/orderBy';
+import { useDialogs } from './hooks';
 
-const Dialogs = ({ items, userId, inputValue, onSearch, currentDialogId }) => (
-  <div className="dialogs">
-    <div className="dialogs__search">
-      <Input.Search
-        placeholder="Поиск среди контактов"
-        onChange={(e) => onSearch(e.target.value)}
-        value={inputValue}
-      />
-    </div>
-    {items.length ? (
-      orderBy(items, ['created_at'], ['desc']).map((item) => (
-        <DialogItem
-          key={item._id}
-          isMe={item.user._id === userId}
-          currentDialogId={currentDialogId}
-          {...item}
+const Dialogs = ({ userId }) => {
+  const { onChangeInput, inputValue, dialogs } = useDialogs();
+
+  return (
+    <div className="dialogs">
+      <div className="dialogs__search">
+        <Input.Search
+          placeholder="Поиск среди контактов"
+          onChange={(e) => onChangeInput(e.target.value)}
+          value={inputValue}
         />
-      ))
-    ) : (
-      <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="Ничего не найдено" />
-    )}
-  </div>
-);
+      </div>
+      {dialogs.length ? (
+        orderBy(dialogs, ['created_at'], ['desc']).map((dialog) => (
+          <DialogItem key={dialog._id} isMe={dialog.user._id === userId} {...dialog} />
+        ))
+      ) : (
+        <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="Ничего не найдено" />
+      )}
+    </div>
+  );
+};
+
+Dialogs.propTypes = {
+  userId: PropTypes.string.isRequired,
+};
 
 export default Dialogs;

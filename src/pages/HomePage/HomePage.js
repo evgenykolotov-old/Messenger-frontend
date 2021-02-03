@@ -3,8 +3,8 @@ import { Button } from 'antd';
 import { TeamOutlined, FormOutlined } from '@ant-design/icons';
 
 import './HomePage.css';
-import Dialogs from '../../containers/Dialogs';
-import Messages from '../../containers/Messages';
+import Dialogs from '../../components/Dialogs/Dialogs';
+import Messages from '../../components/Messages/Messages';
 import ChatInput from '../../components/ChatInput/ChatInput';
 import Status from '../../components/Status/Status';
 
@@ -22,7 +22,7 @@ const HomePage = () => {
           </div>
 
           <div className="chat-sidebar__dialogs">
-            <Dialogs userId={1} />
+            <Dialogs userId={'1'} />
           </div>
         </div>
 

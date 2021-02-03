@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import './DialogItem.css';
 import IconReaded from '../../components/IconReaded/IconReaded';
@@ -8,16 +9,19 @@ import Avatar from '../Avatar/Avatar';
 import format from 'date-fns/format';
 import isToday from 'date-fns/isToday';
 import * as actions from '../../store/actions/dialogs';
+import { getCurrentDialogId } from '../../store/selectors/dialogs';
 
-const getMessageTime = (created_at) => {
-  if (isToday(created_at)) {
-    return format(created_at, 'hh:mm');
+const getMessageTime = (date) => {
+  const messageTime = new Date(date);
+  if (isToday(messageTime)) {
+    return format(messageTime, 'hh:mm');
   }
-  return format(created_at, 'dd.MM.yyyy');
+  return format(messageTime, 'dd.MM.yyyy');
 };
 
-const DialogItem = ({ _id, user, unreaded, isMe, created_at, text, currentDialogId }) => {
+const DialogItem = ({ _id, user, unreaded, isMe, created_at, text }) => {
   const dispatch = useDispatch();
+  const currentDialogId = useSelector(getCurrentDialogId);
   const onSelectDialog = () => dispatch(actions.setCurrentDialog(_id));
 
   return (
@@ -31,19 +35,27 @@ const DialogItem = ({ _id, user, unreaded, isMe, created_at, text, currentDialog
       <div className="dialog-item__avatar">
         <Avatar user={user} />
       </div>
-      <div className="item-info">
-        <div className="item-info__top">
+      <div className="dialog-item-info">
+        <div className="dialog-item-info__top">
           <b>{user.fullname}</b>
-          <span>{getMessageTime(new Date(created_at))}</span>
+          <span>{getMessageTime(created_at)}</span>
         </div>
-        <div className="item-info__bottom">
+        <div className="dialog-item-info__bottom">
           <p>{text}</p>
           {isMe && <IconReaded isMe isReaded />}
-          {unreaded > 0 && <div className="item-info__count">{unreaded > 9 ? '+9' : unreaded}</div>}
+          {unreaded > 0 && (
+            <div className="dialog-item-info__count">{unreaded > 9 ? '+9' : unreaded}</div>
+          )}
         </div>
       </div>
     </div>
   );
+};
+
+DialogItem.propTypes = {
+  _id: PropTypes.string.isRequired,
+  created_at: PropTypes.string.isRequired,
+  isMe: PropTypes.bool,
 };
 
 export default DialogItem;

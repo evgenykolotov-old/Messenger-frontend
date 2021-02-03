@@ -1,6 +1,8 @@
 import React from 'react';
-import generateAvatarFromHash from '../../utils/generateAvatarFromHash';
+import PropTypes from 'prop-types';
+
 import './Avatar.css';
+import generateAvatarFromHash from '../../utils/generateAvatarFromHash';
 
 const Avatar = ({ user }) => {
   if (user.avatar) {
@@ -19,6 +21,14 @@ const Avatar = ({ user }) => {
       </div>
     );
   }
+};
+
+Avatar.propTypes = {
+  user: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    fullname: PropTypes.string.isRequired,
+    avatar: PropTypes.string || null,
+  }).isRequired,
 };
 
 export default Avatar;

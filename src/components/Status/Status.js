@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-
-import './Status.css';
 import { Button } from 'antd';
 import { EllipsisOutlined } from '@ant-design/icons';
+import './Status.css';
 
 const Status = ({ online, fullname }) => (
   <div className="chat-dialog__header">
