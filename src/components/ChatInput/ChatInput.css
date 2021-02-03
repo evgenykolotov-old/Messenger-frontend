@@ -43,3 +43,9 @@
 .chat-input__files input {
   cursor: pointer;
 }
+
+.chat-input__emoji-picker {
+  position: absolute;
+  bottom: 50px;
+  z-index: 1;
+}

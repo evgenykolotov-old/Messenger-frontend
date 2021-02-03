@@ -1,5 +1,6 @@
 @import '~reset-css/reset.css';
 @import '~antd/dist/antd.css';
+@import 'emoji-mart/css/emoji-mart.css';
 
 * {
   outline: none;
