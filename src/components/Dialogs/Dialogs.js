@@ -5,7 +5,7 @@ import './Dialogs.css';
 import DialogItem from '../DialogItem/DialogItem';
 import orderBy from 'lodash/orderBy';
 
-const Dialogs = ({ items, userId, inputValue, onSearch }) => (
+const Dialogs = ({ items, userId, inputValue, onSearch, currentDialogId }) => (
   <div className="dialogs">
     <div className="dialogs__search">
       <Input.Search
@@ -16,7 +16,12 @@ const Dialogs = ({ items, userId, inputValue, onSearch }) => (
     </div>
     {items.length ? (
       orderBy(items, ['created_at'], ['desc']).map((item) => (
-        <DialogItem key={item._id} isMe={item.user._id === userId} {...item} />
+        <DialogItem
+          key={item._id}
+          isMe={item.user._id === userId}
+          currentDialogId={currentDialogId}
+          {...item}
+        />
       ))
     ) : (
       <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="Ничего не найдено" />

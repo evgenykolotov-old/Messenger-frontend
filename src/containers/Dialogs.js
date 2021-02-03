@@ -6,6 +6,7 @@ import * as actions from '../store/actions/dialogs';
 const Dialogs = ({ userId }) => {
   const dispatch = useDispatch();
   const dialogs = useSelector((state) => state.dialogs.items);
+  const currentDialogId = useSelector((state) => state.dialogs.currentDialogId);
 
   const [inputValue, setValue] = useState('');
   const [filtred, setFiltredItems] = useState(Array.from(dialogs));
@@ -28,7 +29,13 @@ const Dialogs = ({ userId }) => {
   };
 
   return (
-    <BaseDialogs items={filtred} userId={userId} onSearch={onChangeInput} inputValue={inputValue} />
+    <BaseDialogs
+      items={filtred}
+      userId={userId}
+      onSearch={onChangeInput}
+      inputValue={inputValue}
+      currentDialogId={currentDialogId}
+    />
   );
 };
 
