@@ -1,8 +1,5 @@
 .chat-dialog__messages {
   height: calc(100% - 138px);
-  overflow: auto;
-  padding: 20px;
-  padding-bottom: 0;
   position: relative;
 }
 
@@ -11,4 +8,17 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.messages {
+  height: 100%;
+  padding: 20px;
+  padding-bottom: 0;
+  overflow: auto;
+}
+
+.messages--loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

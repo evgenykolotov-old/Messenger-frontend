@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import BaseMessages from '../components/Messages/Messages';
@@ -8,6 +8,7 @@ const Messages = () => {
   const dispatch = useDispatch();
   const messages = useSelector((state) => state.messages.items);
   const currentDialogId = useSelector((state) => state.dialogs.currentDialogId);
+  const messagesRef = useRef(null);
 
   useEffect(() => {
     if (currentDialogId) {
@@ -15,7 +16,11 @@ const Messages = () => {
     }
   }, [dispatch, currentDialogId]);
 
-  return <BaseMessages items={messages} />;
+  useEffect(() => {
+    messagesRef.current.scrollTo(0, 999999);
+  }, [messages]);
+
+  return <BaseMessages blockRef={messagesRef} items={messages} />;
 };
 
 export default Messages;

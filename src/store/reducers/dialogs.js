@@ -3,6 +3,7 @@ import * as actionTypes from '../types';
 const initialState = {
   items: [],
   currentDialogId: null,
+  isLoading: false,
 };
 
 const dialogsReducer = (state = initialState, { type, payload }) => {

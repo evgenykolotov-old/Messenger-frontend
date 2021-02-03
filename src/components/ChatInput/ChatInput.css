@@ -31,3 +31,15 @@
 .chat-input input:focus {
   box-shadow: none;
 }
+
+.chat-input__files:hover button {
+  opacity: 1;
+}
+
+.chat-input__files {
+  cursor: pointer;
+}
+
+.chat-input__files input {
+  cursor: pointer;
+}
