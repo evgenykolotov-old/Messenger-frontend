@@ -8,13 +8,11 @@ import './index.css';
 import App from './App';
 
 const application = (
-  <React.StrictMode>
-    <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </BrowserRouter>
-  </React.StrictMode>
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>
 );
 
 ReactDOM.render(application, document.getElementById('root'));

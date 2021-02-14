@@ -1,6 +1,8 @@
 import { withFormik } from 'formik';
 import validateForm from '../../../utils/validate';
 import LoginForm from '../components/LoginForm';
+import { fetchUserLogin } from '../../../store/actions/user';
+import { store } from '../../../store/store';
 
 export default withFormik({
   enableReinitialize: true,
@@ -13,6 +15,18 @@ export default withFormik({
     validateForm({ isAuth: true, values, errors });
     return errors;
   },
-  handleSubmit: () => {},
+  handleSubmit: (values, { setSubmitting, props }) => {
+    store
+      .dispatch(fetchUserLogin(values))
+      .then(({ status }) => {
+        if (status === 'success') {
+          props.history.push('/im');
+        }
+        setSubmitting(false);
+      })
+      .catch(() => {
+        setSubmitting(false);
+      });
+  },
   displayName: 'LoginForm',
 })(LoginForm);

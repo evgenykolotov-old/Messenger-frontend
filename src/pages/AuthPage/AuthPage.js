@@ -6,10 +6,10 @@ import LoginForm from '../../modules/LoginFrom';
 import RegisterForm from '../../modules/RegisterForm';
 
 const AuthPage = () => (
-  <section className="auth">
-    <div className="auth-content">
-      <Route exact path={['/', '/login']} component={LoginForm} />
-      <Route exact path="/register" component={RegisterForm} />
+  <section className='auth'>
+    <div className='auth-content'>
+      <Route exact path={['/', '/signin']} component={LoginForm} />
+      <Route exact path='/signup' component={RegisterForm} />
     </div>
   </section>
 );
