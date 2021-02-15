@@ -15,7 +15,15 @@ import validateField from '../../../utils/validateField';
 const success = true;
 
 const RegisterForm = (props) => {
-  const { values, touched, errors, handleChange, handleBlur, handleSubmit } = props;
+  const {
+    values,
+    touched,
+    errors,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    isSubmitting,
+  } = props;
 
   return (
     <>
@@ -96,7 +104,12 @@ const RegisterForm = (props) => {
               />
             </Form.Item>
             <Form.Item>
-              <Button onClick={handleSubmit} type='primary' size='large'>
+              <Button
+                disabled={isSubmitting}
+                onClick={handleSubmit}
+                type='primary'
+                size='large'
+              >
                 Зарегистрироваться
               </Button>
             </Form.Item>

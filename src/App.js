@@ -11,7 +11,11 @@ const App = () => {
   return (
     <div className='wrapper'>
       <Switch>
-        <Route exact path={['/', '/signin', '/signup']} component={AuthPage} />
+        <Route
+          exact
+          path={['/', '/signup/verify', '/signin', '/signup']}
+          component={AuthPage}
+        />
         <Route
           path='/im'
           exact

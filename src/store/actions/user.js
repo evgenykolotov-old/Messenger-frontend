@@ -13,7 +13,7 @@ const fetchUserData = () => (dispatch) => {
 
 export const fetchUserLogin = (postData) => (dispatch) => {
   return userApi
-    .login(postData)
+    .signIn(postData)
     .then(({ data }) => {
       const { token } = data;
       openNotification({
@@ -33,4 +33,8 @@ export const fetchUserLogin = (postData) => (dispatch) => {
         type: 'error',
       });
     });
+};
+
+export const fetchUserRegistry = (postData) => (dispatch) => {
+  return userApi.signUp(postData);
 };
