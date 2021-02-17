@@ -1,11 +1,20 @@
 import * as actionTypes from '../types';
 import userApi from '../../utils/api/userApi';
 import openNotification from '../../utils/openNotification';
+import axios from '../../core/axios';
 
-const setUserData = (data) => ({ type: actionTypes.SET_DATA, payload: { data } });
-// const setAuth = (bool) => ({ type: actionTypes.SET_AUTH, payload: { bool } });
+const setUserData = (user) => {
+  localStorage.setItem('user', JSON.stringify(user));
+  return { type: actionTypes.SET_DATA, payload: { data: user } };
+};
+const setIsAuth = (bool) => ({ type: actionTypes.SET_IS_AUTH, payload: { bool } });
+const setToken = (token) => {
+  localStorage.setItem('token', token);
+  axios.defaults.headers['token'] = token;
+  return { type: actionTypes.SET_TOKEN, payload: { token } };
+};
 
-const fetchUserData = () => (dispatch) => {
+export const fetchUserData = () => (dispatch) => {
   userApi.getMe().then(({ data }) => {
     dispatch(setUserData(data));
   });
@@ -21,9 +30,8 @@ export const fetchUserLogin = (postData) => (dispatch) => {
         text: 'Авторизация успешна.',
         type: 'success',
       });
-      localStorage.setItem('token', token);
+      dispatch(setToken(token));
       dispatch(fetchUserData());
-      // dispatch(setAuth(true));
       return data;
     })
     .catch(() => {

@@ -5,4 +5,5 @@ export const SET_MESSAGES = 'messages/setMessages';
 export const SET_LOADING = 'messages/setLoading';
 
 export const SET_DATA = 'user/setData';
-export const SET_AUTH = 'user/setAuth';
+export const SET_TOKEN = 'user/setToken';
+export const SET_IS_AUTH = 'user/setIsAuth';

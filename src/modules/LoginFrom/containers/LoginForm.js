@@ -20,7 +20,7 @@ export default withFormik({
       .dispatch(fetchUserLogin(values))
       .then(({ status }) => {
         if (status === 'success') {
-          props.history.push('/im');
+          props.history.push('/');
         }
         setSubmitting(false);
       })

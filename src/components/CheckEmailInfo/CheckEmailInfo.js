@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Result, Button, Spin } from 'antd';
 
-import { userApi } from '../../utils/api/userApi';
-import { Block } from 'components';
+import userApi from '../../utils/api/userApi';
+import Block from '../Block/Block';
 
 const renderTextInfo = ({ hash, verified }) => {
   if (hash) {

@@ -1,7 +1,7 @@
 import { withFormik } from 'formik';
 import validateForm from '../../../utils/validate';
 import RegisterForm from '../components/RegisterForm';
-import { fetchUserRegister } from '../../../store/actions/user';
+import { fetchUserRegistry } from '../../../store/actions/user';
 import { store } from '../../../store/store';
 
 export default withFormik({
@@ -19,7 +19,7 @@ export default withFormik({
   },
   handleSubmit: (values, { setSubmitting, props }) => {
     store
-      .dispatch(fetchUserRegister(values))
+      .dispatch(fetchUserRegistry(values))
       .then(({ status }) => {
         if (status === 'success') {
           props.history.push('/im');

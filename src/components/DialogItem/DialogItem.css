@@ -69,6 +69,7 @@
   height: 1.2em;
   white-space: nowrap;
   margin-bottom: 0;
+  line-height: 1;
 }
 
 .dialog-item-info__count {

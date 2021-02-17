@@ -13,11 +13,11 @@ const App = () => {
       <Switch>
         <Route
           exact
-          path={['/', '/signup/verify', '/signin', '/signup']}
+          path={['/signup/verify', '/signin', '/signup']}
           component={AuthPage}
         />
         <Route
-          path='/im'
+          path='/'
           exact
           render={() => (isAuth ? <HomePage /> : <Redirect to='/signin' />)}
         />

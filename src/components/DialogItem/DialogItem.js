@@ -19,7 +19,7 @@ const getMessageTime = (date) => {
   return format(messageTime, 'dd.MM.yyyy');
 };
 
-const DialogItem = ({ _id, user, unreaded, isMe, created_at, text }) => {
+const DialogItem = ({ _id, isMe, createdAt, lastMessage, partner }) => {
   const dispatch = useDispatch();
   const currentDialogId = useSelector(getCurrentDialogId);
   const onSelectDialog = () => dispatch(actions.setCurrentDialog(_id));
@@ -27,24 +27,26 @@ const DialogItem = ({ _id, user, unreaded, isMe, created_at, text }) => {
   return (
     <div
       className={classnames('dialog-item', {
-        'dialog-item--online': user.isOnline,
+        'dialog-item--online': partner.isOnline,
         'dialog-item--selected': currentDialogId === _id,
       })}
       onClick={onSelectDialog}
     >
-      <div className="dialog-item__avatar">
-        <Avatar user={user} />
+      <div className='dialog-item__avatar'>
+        <Avatar user={partner} />
       </div>
-      <div className="dialog-item-info">
-        <div className="dialog-item-info__top">
-          <b>{user.fullname}</b>
-          <span>{getMessageTime(created_at)}</span>
+      <div className='dialog-item-info'>
+        <div className='dialog-item-info__top'>
+          <b>{partner.fullname}</b>
+          <span>{getMessageTime(createdAt)}</span>
         </div>
-        <div className="dialog-item-info__bottom">
-          <p>{text}</p>
+        <div className='dialog-item-info__bottom'>
+          <p>{lastMessage.text}</p>
           {isMe && <IconReaded isMe isReaded />}
-          {unreaded > 0 && (
-            <div className="dialog-item-info__count">{unreaded > 9 ? '+9' : unreaded}</div>
+          {lastMessage.readed > 0 && (
+            <div className='dialog-item-info__count'>
+              {lastMessage.readed > 9 ? '+9' : lastMessage.readed}
+            </div>
           )}
         </div>
       </div>
@@ -54,7 +56,7 @@ const DialogItem = ({ _id, user, unreaded, isMe, created_at, text }) => {
 
 DialogItem.propTypes = {
   _id: PropTypes.string.isRequired,
-  created_at: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
   isMe: PropTypes.bool,
 };
 

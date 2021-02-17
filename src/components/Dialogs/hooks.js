@@ -13,7 +13,9 @@ export const useDialogs = () => {
     (value = '') => {
       setFiltredItems(
         dialogs.filter(
-          (dialog) => dialog.user.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0
+          (dialog) =>
+            dialog.author.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0 ||
+            dialog.partner.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0
         )
       );
       setValue(value);
