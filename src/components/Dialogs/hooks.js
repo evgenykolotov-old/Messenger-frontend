@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDialogs } from '../../store/selectors/dialogs';
 import * as actions from '../../store/actions/dialogs';
+import socket from '../../core/socket';
 
 export const useDialogs = () => {
   const dispatch = useDispatch();
@@ -31,6 +32,10 @@ export const useDialogs = () => {
 
   useEffect(() => {
     dispatch(actions.fetchDialogs());
+
+    socket.on('SERVER:DIALOG_CREATED', () => {
+      dispatch(actions.fetchDialogs());
+    });
   }, [dispatch]);
 
   return {

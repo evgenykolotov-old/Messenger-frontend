@@ -17,6 +17,11 @@ const messagesReducer = (state = initialState, { type, payload }) => {
       return { ...state, isLoading: bool };
     }
 
+    case actionTypes.ADD_MESSAGE: {
+      const { message } = payload;
+      return { ...state, items: [...state.items, message] };
+    }
+
     default: {
       return state;
     }

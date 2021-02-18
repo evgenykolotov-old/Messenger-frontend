@@ -18,7 +18,6 @@ const App = () => {
         />
         <Route
           path='/'
-          exact
           render={() => (isAuth ? <HomePage /> : <Redirect to='/signin' />)}
         />
       </Switch>

@@ -1,14 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button } from 'antd';
 import { TeamOutlined, FormOutlined } from '@ant-design/icons';
+import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 import './HomePage.css';
 import Dialogs from '../../components/Dialogs/Dialogs';
 import Messages from '../../components/Messages/Messages';
 import ChatInput from '../../components/ChatInput/ChatInput';
 import Status from '../../components/Status/Status';
+import { setCurrentDialogId } from '../../store/actions/dialogs';
 
 const HomePage = () => {
+  const dispatch = useDispatch();
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    const dialogId = pathname.split('/')[2];
+    dispatch(setCurrentDialogId(dialogId));
+  }, [dispatch, pathname]);
+
   return (
     <section className='home'>
       <div className='chat'>
@@ -27,9 +38,9 @@ const HomePage = () => {
         </div>
 
         <div className='chat-dialog'>
-          {/* <Status />
+          <Status />
           <Messages />
-          <ChatInput /> */}
+          <ChatInput />
         </div>
       </div>
     </section>

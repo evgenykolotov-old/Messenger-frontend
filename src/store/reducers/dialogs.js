@@ -2,7 +2,7 @@ import * as actionTypes from '../types';
 
 const initialState = {
   items: [],
-  currentDialogId: null,
+  currentDialogId: window.location.pathname.split('dialog/')[1],
   isLoading: false,
 };
 
