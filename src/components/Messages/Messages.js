@@ -8,6 +8,7 @@ import './Messages.css';
 import Message from '../Message/Message';
 import { getLoading, getMessages } from '../../store/selectors/messages';
 import { getCurrentDialogId } from '../../store/selectors/dialogs';
+import { getUserId } from '../../store/selectors/user';
 import * as actions from '../../store/actions/messages';
 
 const Messages = () => {
@@ -15,6 +16,7 @@ const Messages = () => {
   const dispatch = useDispatch();
   const messages = useSelector(getMessages);
   const isLoading = useSelector(getLoading);
+  const userId = useSelector(getUserId);
   const currentDialogId = useSelector(getCurrentDialogId);
 
   const onNewMessage = useCallback(
@@ -48,7 +50,13 @@ const Messages = () => {
           <Spin size='large' tip='Загрузка сообщений...' />
         ) : !isLoading && messages ? (
           messages.length > 0 ? (
-            messages.map((message) => <Message key={message._id} {...message} />)
+            messages.map((message) => (
+              <Message
+                key={message._id}
+                isMe={userId === message.user._id}
+                {...message}
+              />
+            ))
           ) : (
             <Empty description='Диалог пуст' />
           )

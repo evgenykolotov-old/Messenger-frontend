@@ -27,3 +27,7 @@ export const addMessage = (message) => (dispatch, getState) => {
     });
   }
 };
+
+export const fetchSendMessage = ({ text, dialogId }) => () => {
+  return messagesApi.send(text, dialogId);
+};

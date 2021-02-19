@@ -94,7 +94,7 @@
   flex-direction: row-reverse;
 }
 
-.message--isme .message-avatar__image {
+.message--isme .message-avatar {
   margin-right: 0;
   margin-left: 13px;
 }

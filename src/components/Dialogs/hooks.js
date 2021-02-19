@@ -24,6 +24,8 @@ export const useDialogs = () => {
     [dialogs]
   );
 
+  const fetchDialogs = useCallback(() => dispatch(actions.fetchDialogs()), [dispatch]);
+
   useEffect(() => {
     if (dialogs.length) {
       onChangeInput();
@@ -31,12 +33,13 @@ export const useDialogs = () => {
   }, [onChangeInput, dialogs]);
 
   useEffect(() => {
-    dispatch(actions.fetchDialogs());
+    fetchDialogs();
 
-    socket.on('SERVER:DIALOG_CREATED', () => {
-      dispatch(actions.fetchDialogs());
-    });
-  }, [dispatch]);
+    socket.on('SERVER:DIALOG_CREATED', fetchDialogs);
+    return () => {
+      socket.removeListener('SERVER:DIALOG_CREATED', fetchDialogs);
+    };
+  }, [dispatch, fetchDialogs]);
 
   return {
     onChangeInput,
