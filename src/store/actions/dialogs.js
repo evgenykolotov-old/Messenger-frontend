@@ -1,5 +1,5 @@
 import * as actionTypes from '../types';
-import dialogsApi from '../../utils/api/dialogsApi';
+import axios from '../../core/axios';
 
 const setDialogs = (dialogs) => ({ type: actionTypes.SET_DIALOGS, payload: { dialogs } });
 export const setCurrentDialogId = (id) => ({
@@ -7,6 +7,11 @@ export const setCurrentDialogId = (id) => ({
   payload: { id },
 });
 
-export const fetchDialogs = () => (dispatch) => {
-  dialogsApi.getAll().then(({ data }) => dispatch(setDialogs(data)));
+export const fetchDialogs = () => async (dispatch) => {
+  try {
+    const { data } = await axios.get('/dialogs');
+    dispatch(setDialogs(data));
+  } catch (error) {
+    //TODO: Ошибка запроса диалогов;
+  }
 };

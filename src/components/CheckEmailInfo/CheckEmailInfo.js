@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Result, Button, Spin } from 'antd';
-
-import userApi from '../../utils/api/userApi';
+import axios from '../../core/axios';
 import Block from '../Block/Block';
 
 const renderTextInfo = ({ hash, verified }) => {
@@ -45,8 +44,8 @@ const CheckEmailInfo = ({ location, history }) => {
 
   useEffect(() => {
     if (hash) {
-      userApi
-        .verifyHash(hash)
+      axios
+        .get('/user/verify?hash=' + hash)
         .then(() => {
           setStatus({ verified: true, checking: false });
         })
