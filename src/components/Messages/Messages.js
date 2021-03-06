@@ -68,4 +68,4 @@ const Messages = () => {
   );
 };
 
-export default Messages;
+export default React.memo(Messages);

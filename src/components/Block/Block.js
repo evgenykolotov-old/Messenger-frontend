@@ -13,4 +13,4 @@ Block.propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]),
 };
 
-export default Block;
+export default React.memo(Block);

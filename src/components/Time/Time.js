@@ -11,4 +11,4 @@ Time.propTypes = {
   date: PropsTypes.string,
 };
 
-export default Time;
+export default React.memo(Time);

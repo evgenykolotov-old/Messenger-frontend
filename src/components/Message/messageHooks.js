@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 
 export const useMessageAudio = () => {
   const audioElem = useRef(null);
@@ -6,13 +6,13 @@ export const useMessageAudio = () => {
   const [progress, setProgress] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
 
-  const togglePlay = () => {
+  const togglePlay = useCallback(() => {
     if (!isPlaying) {
       audioElem.current.play();
     } else {
       audioElem.current.pause();
     }
-  };
+  }, [isPlaying]);
 
   useEffect(() => {
     audioElem.current.addEventListener(

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Button, Input } from 'antd';
 import {
   SmileOutlined,
@@ -15,9 +15,9 @@ const ChatInput = () => {
   const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
   const { value, setValue, onSendMessage } = useChatInput();
 
-  const toggleEmojiPicker = () => {
+  const toggleEmojiPicker = useCallback(() => {
     setEmojiPickerVisible(!emojiPickerVisible);
-  };
+  }, [emojiPickerVisible]);
 
   return (
     <div className='chat-input'>
@@ -64,4 +64,4 @@ const ChatInput = () => {
   );
 };
 
-export default ChatInput;
+export default React.memo(ChatInput);

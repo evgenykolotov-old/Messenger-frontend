@@ -82,4 +82,4 @@ const CheckEmailInfo = ({ location, history }) => {
   );
 };
 
-export default CheckEmailInfo;
+export default React.memo(CheckEmailInfo);

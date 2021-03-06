@@ -18,4 +18,4 @@ Button.propTypes = {
   className: PropsTypes.string,
 };
 
-export default Button;
+export default React.memo(Button);

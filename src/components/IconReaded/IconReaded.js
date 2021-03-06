@@ -7,12 +7,12 @@ import noReadedSvg from '../../assests/noreaded.svg';
 const IconReaded = ({ isMe, isReaded }) =>
   (isMe &&
     (isReaded ? (
-      <img className="message__icon--readed" src={readedSvg} alt="Readed icon" />
+      <img className='message__icon--readed' src={readedSvg} alt='Readed icon' />
     ) : (
       <img
-        className="message__icon--readed message__icon--no-readed"
+        className='message__icon--readed message__icon--no-readed'
         src={noReadedSvg}
-        alt="Noreaded icon"
+        alt='Noreaded icon'
       />
     ))) ||
   null;
@@ -22,4 +22,4 @@ IconReaded.propTypes = {
   isReaded: PropTypes.bool,
 };
 
-export default IconReaded;
+export default React.memo(IconReaded);

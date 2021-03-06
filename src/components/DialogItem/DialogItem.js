@@ -59,4 +59,4 @@ DialogItem.propTypes = {
   isMe: PropTypes.bool,
 };
 
-export default DialogItem;
+export default React.memo(DialogItem);

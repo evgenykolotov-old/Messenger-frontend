@@ -17,29 +17,40 @@ const MessageAudio = ({ audioSrc }) => {
   const { isPlaying, progress, currentTime, togglePlay, audioElem } = useMessageAudio();
 
   return (
-    <div className="message-audio">
-      <audio ref={audioElem} src={audioSrc} preload="auto" />
-      <div className="message-audio__progress" style={{ width: progress + '%' }}></div>
-      <div className="message-audio-info">
-        <div className="message-audio-info__button">
+    <div className='message-audio'>
+      <audio ref={audioElem} src={audioSrc} preload='auto' />
+      <div className='message-audio__progress' style={{ width: progress + '%' }}></div>
+      <div className='message-audio-info'>
+        <div className='message-audio-info__button'>
           <button onClick={togglePlay}>
             {isPlaying ? (
-              <img src={pauseSvg} alt="Pause svg" />
+              <img src={pauseSvg} alt='Pause svg' />
             ) : (
-              <img src={playSvg} alt="Play svg" />
+              <img src={playSvg} alt='Play svg' />
             )}
           </button>
         </div>
-        <div className="message-audio-info__wave">
-          <img src={waveSvg} alt="Wave svg" />
+        <div className='message-audio-info__wave'>
+          <img src={waveSvg} alt='Wave svg' />
         </div>
-        <span className="message-audio-info__duration">{converCurrentTime(currentTime)}</span>
+        <span className='message-audio-info__duration'>
+          {converCurrentTime(currentTime)}
+        </span>
       </div>
     </div>
   );
 };
 
-const Message = ({ user, text, created_at, isMe, isReaded, attachments, isTyping, audio }) => {
+const Message = ({
+  user,
+  text,
+  created_at,
+  isMe,
+  isReaded,
+  attachments,
+  isTyping,
+  audio,
+}) => {
   return (
     <div
       className={classnames('message', {
@@ -49,20 +60,20 @@ const Message = ({ user, text, created_at, isMe, isReaded, attachments, isTyping
         'message--image': attachments && attachments.length === 1,
       })}
     >
-      <div className="message-content">
+      <div className='message-content'>
         <IconReaded isMe={isMe} isReaded={isReaded} />
 
-        <div className="message-avatar">
+        <div className='message-avatar'>
           <Avatar user={user} />
         </div>
 
-        <div className="message-info">
+        <div className='message-info'>
           {(audio || text || isTyping) && (
-            <div className="message__bubble">
-              {text && <p className="message__text">{text}</p>}
+            <div className='message__bubble'>
+              {text && <p className='message__text'>{text}</p>}
 
               {isTyping && (
-                <div className="message-typing">
+                <div className='message-typing'>
                   <span />
                   <span />
                   <span />
@@ -74,17 +85,21 @@ const Message = ({ user, text, created_at, isMe, isReaded, attachments, isTyping
           )}
 
           {attachments && (
-            <div className="message-attachments">
+            <div className='message-attachments'>
               {attachments.map((item) => (
-                <div className="message-attachments__item">
-                  <img className="message-attachments__image" src={item.url} alt={item.filename} />
+                <div className='message-attachments__item'>
+                  <img
+                    className='message-attachments__image'
+                    src={item.url}
+                    alt={item.filename}
+                  />
                 </div>
               ))}
             </div>
           )}
 
           {created_at && (
-            <span className="message__date">
+            <span className='message__date'>
               <Time date={created_at} />
             </span>
           )}
@@ -106,4 +121,4 @@ Message.propTypes = {
   audio: PropTypes.string,
 };
 
-export default Message;
+export default React.memo(Message);
