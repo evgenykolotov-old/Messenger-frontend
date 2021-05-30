@@ -11,7 +11,7 @@ export const fetchMessages = (dialogId) => async (dispatch) => {
   try {
     dispatch(setLoading(true));
     const { data } = await axios.get(`/messages?dialog=${dialogId}`);
-    dispatch(setMessages(data));
+    dispatch(setMessages(data.result));
   } catch (error) {
     dispatch(setLoading(false));
   }

@@ -10,7 +10,7 @@ export const setCurrentDialogId = (id) => ({
 export const fetchDialogs = () => async (dispatch) => {
   try {
     const { data } = await axios.get('/dialogs');
-    dispatch(setDialogs(data));
+    dispatch(setDialogs(data.result));
   } catch (error) {
     //TODO: Ошибка запроса диалогов;
   }
