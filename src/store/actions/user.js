@@ -46,7 +46,3 @@ export const fetchUserLogin = (postData) => async (dispatch) => {
 export const fetchUserRegistry = (postData) => async () => {
   await axios.post('/auth/signup', postData);
 };
-
-export const fetchFindUsers = (name) => async (dispatch) => {
-	await axios.get('/user/find');
-}
