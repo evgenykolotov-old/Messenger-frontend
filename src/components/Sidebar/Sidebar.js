@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { Button, Modal, Select } from 'antd';
+import { Button, Modal, Select, Input, Form } from 'antd';
 import axios from '../../core/axios';
 import { TeamOutlined, FormOutlined } from '@ant-design/icons';
 
 import './Sidebar.css';
 import Dialogs from '../../components/Dialogs/Dialogs';
-
-const { Option } = Select;
 
 const Sidebar = () => {
   const [visible, setVisible] = useState(false);
@@ -14,10 +12,7 @@ const Sidebar = () => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState(null);
-  
-  const options = users.map(user => (
-  	<Option key={user._id}>{user.fullname}</Option>
-  ))
+  const [messageText, setMessageText] = useState('');
 
   const onClose = () => setVisible(false);
   const onShow = () => setVisible(true);
@@ -33,9 +28,18 @@ const Sidebar = () => {
   	}
   };
   const onSelectUser = (userId) => {
-  	console.log('UserId', userId);
+  	setSelectedUserId(userId);
   }
-  const onAddDialog = () => {};
+  const onAddDialog = async () => {
+  	try {
+  	  await axios.post('dialogs', { partner: selectedUserId });
+  	  setIsLoading(false);
+  	  onClose();
+  	} catch (error) {
+  	  setIsLoading(false);
+  	}
+  };
+  const onChangeMessageText = (event) => setMessageText(event.target.value);
   
   return (
     <div className='chat-sidebar'>
@@ -54,30 +58,54 @@ const Sidebar = () => {
       <Modal
 	    title="Создать диалог"
 	    visible={visible}
-	    onOk={onClose}
+	    onOk={onAddDialog}
 	    onCancel={onClose}
 	    okText="Создать"
 	    cancelText="Закрыть"
 	    confirmLoading={isLoading}
+	    footer={[
+	      <Button key="back" onClick={onClose}>
+	        Закрыть
+	      </Button>,
+	      <Button 
+	        key="submit" 
+	        type="priary" 
+	        loading={isLoading} 
+	        onClick={onAddDialog}
+	        disabled={!messageText}
+	      >
+	        Создать
+	      </Button>
+	    ]}
       >
-	    <Select
-		  showSearch
-		  value={inputValue}
-		  placeholder="Введите имя пользователя"
-		  showArrow={false}
-		  filterOption={false}
-		  style={{ width: '100%' }}
-		  onChange={onChangeInput}
-		  onSearch={onSearch}
-		  onSelectUser={onSelectUser}
-		  notFoundContent={null}
-		  defaultActiveFirtsOption={false}
-	    >
-	      { users.map(user => (
-	          <Option key={user._id}>{user.fullname}</Option>
-	        )) 
-	      }
-	    </Select>
+        <Form>
+		  <Form.Item label="Введите имя пользователя или email">
+		    <Select
+			  showSearch
+			  value={inputValue}
+			  showArrow={false}
+			  filterOption={false}
+			  style={{ width: '100%' }}
+			  onChange={onChangeInput}
+			  onSearch={onSearch}
+			  onSelect={onSelectUser}
+			  notFoundContent={null}
+		    >
+		      { users.map(user => (
+		          <Select.Option key={user._id}>{user.fullname}</Select.Option>
+		        )) 
+		      }
+		    </Select>
+		  </Form.Item>
+
+		  {selectedUserId && (<Form.Item label="Введите текст сообщения">
+			<Input.TextArea
+		  	  autosize={{ minRows: 3, maxRows: 10 }}
+		  	  value={messageText}
+		  	  onChange={onChangeMessageText}
+		  	/>
+		  </Form.Item>)}
+        </Form>
       </Modal>
     </div>
   );
