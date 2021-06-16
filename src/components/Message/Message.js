@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { Popover, Button } from 'antd';
+import { EllipsisOutlined } from '@ant-design/icons'
 
 import './Message.css';
 import Time from '../Time/Time';
@@ -51,6 +53,7 @@ const Message = ({
   isTyping,
   audio,
 }) => {
+  const onRemoveMessage = () => console.log("Удаление сообщения!");
   return (
     <div
       className={classnames('message', {
@@ -62,6 +65,22 @@ const Message = ({
     >
       <div className='message-content'>
         <IconReaded isMe={isMe} isReaded={isReaded} />
+        <Popover
+          content={
+          	<div>
+			  <Button onClick={onRemoveMessage}>Удалить сообщение</Button>
+          	</div>
+          }
+		  trigger="click"
+        >
+          <div className="message__icon-actions">
+			<Button
+	          type='ghost'
+	          shape='circle'
+	          icon={<EllipsisOutlined style={{ fontSize: '22px' }} />}
+	        />
+          </div>
+        </Popover>
 
         <div className='message-avatar'>
           <Avatar user={user} />
