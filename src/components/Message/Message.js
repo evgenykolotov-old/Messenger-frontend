@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Popover, Button } from 'antd';
 import { EllipsisOutlined } from '@ant-design/icons'
@@ -126,18 +125,6 @@ const Message = ({
       </div>
     </div>
   );
-};
-
-Message.propTypes = {
-  avatar: PropTypes.string || null,
-  text: PropTypes.string,
-  date: PropTypes.string,
-  user: PropTypes.object,
-  attachments: PropTypes.array,
-  isTyping: PropTypes.bool,
-  isMe: PropTypes.bool,
-  isReaded: PropTypes.bool,
-  audio: PropTypes.string,
 };
 
 export default React.memo(Message);

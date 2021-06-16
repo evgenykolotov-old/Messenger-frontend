@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import readedSvg from '../../assests/readed.svg';
 import noReadedSvg from '../../assests/noreaded.svg';
@@ -16,10 +15,5 @@ const IconReaded = ({ isMe, isReaded }) =>
       />
     ))) ||
   null;
-
-IconReaded.propTypes = {
-  isMe: PropTypes.bool,
-  isReaded: PropTypes.bool,
-};
 
 export default React.memo(IconReaded);

@@ -1,13 +1,10 @@
 import React, { useState, useCallback } from 'react';
 import { Button, Input } from 'antd';
-import {
-  SmileOutlined,
-  CameraOutlined,
-  AudioOutlined,
-  SendOutlined,
-} from '@ant-design/icons';
+import { SmileOutlined, CameraOutlined } from '@ant-design/icons';
+import { AudioOutlined, SendOutlined } from '@ant-design/icons';
 import { UploadField } from '@navjobs/upload';
 import { Picker } from 'emoji-mart';
+
 import './ChatInput.css';
 import useChatInput from './hooks';
 

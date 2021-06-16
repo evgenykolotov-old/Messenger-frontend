@@ -1,5 +1,4 @@
 import React from 'react';
-import PropsTypes from 'prop-types';
 import classnames from 'classnames';
 
 import './Button.css';
@@ -13,9 +12,5 @@ const Button = (props) => (
     })}
   />
 );
-
-Button.propTypes = {
-  className: PropsTypes.string,
-};
 
 export default React.memo(Button);

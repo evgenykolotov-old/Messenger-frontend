@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -51,12 +50,6 @@ const DialogItem = ({ _id, isMe, createdAt, lastMessage, partner }) => {
       </div>
     </Link>
   );
-};
-
-DialogItem.propTypes = {
-  _id: PropTypes.string.isRequired,
-  createdAt: PropTypes.string.isRequired,
-  isMe: PropTypes.bool,
 };
 
 export default React.memo(DialogItem);
