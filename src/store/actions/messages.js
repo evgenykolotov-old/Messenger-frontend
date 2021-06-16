@@ -32,7 +32,24 @@ export const fetchSendMessage = ({ text, dialogId }) => async () => {
   try {
     await axios.post('/messages', { text, dialogId });
   } catch (error) {
-    //TODO: Сделать обработку ошибки отправки сообщения;
+    // TODO: Сделать обработку ошибки отправки сообщения;
+    
     console.log('Ошибка отправки сообщения');
   }
 };
+
+export const removeMessage = (messageId) => async (dispatch) => {
+  try {
+    const { data } = await axios.delete(`/messages/${messageId}`);
+    if (data.status === 'success') {
+      dispatch({
+        type: actionTypes.REMOVE_MESSAGE,
+        payload: { messageId },
+      });
+    } else {
+      // TODO: Сделать обработку ошибки удаления сообщения если сервер не смог обработать;
+    }
+  } catch (error) {
+    // TODO: Сделать обработку ошибки при удалении сообщения;
+  }
+}

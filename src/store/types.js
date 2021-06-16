@@ -3,7 +3,8 @@ export const SET_CURRENT_DIALOG = 'dialogs/serCurrentDialog';
 
 export const SET_MESSAGES = 'messages/setMessages';
 export const SET_LOADING = 'messages/setLoading';
-export const ADD_MESSAGE = 'messages/add/Message';
+export const ADD_MESSAGE = 'messages/addMessage';
+export const REMOVE_MESSAGE = 'messages/removeMessage';
 
 export const SET_DATA = 'user/setData';
 export const SET_TOKEN = 'user/setToken';

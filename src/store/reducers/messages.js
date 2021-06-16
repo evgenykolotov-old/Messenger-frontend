@@ -22,6 +22,12 @@ const messagesReducer = (state = initialState, { type, payload }) => {
       return { ...state, items: [...state.items, message] };
     }
 
+    case actionTypes.REMOVE_MESSAGE: {
+      const { messageId } = payload;
+      const items = state.items.filter(item => items.id !== messageId);
+      return { ...state, items };
+    }
+
     default: {
       return state;
     }

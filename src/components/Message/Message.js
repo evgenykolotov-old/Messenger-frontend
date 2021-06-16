@@ -13,6 +13,7 @@ import playSvg from '../../assests/play.svg';
 import pauseSvg from '../../assests/pause.svg';
 import converCurrentTime from '../../utils/converCurrentTime';
 import { useMessageAudio } from './messageHooks';
+import { removeMessage } from '../../store/actions/messages';
 
 const MessageAudio = ({ audioSrc }) => {
   const { isPlaying, progress, currentTime, togglePlay, audioElem } = useMessageAudio();
@@ -51,8 +52,9 @@ const Message = ({
   attachments,
   isTyping,
   audio,
+  _id,
 }) => {
-  const onRemoveMessage = () => console.log("Удаление сообщения!");
+  const onRemoveMessage = () => removeMessage(_id);
   return (
     <div
       className={classnames('message', {
@@ -67,17 +69,17 @@ const Message = ({
         <Popover
           content={
           	<div>
-			  <Button onClick={onRemoveMessage}>Удалить сообщение</Button>
+			        <Button onClick={onRemoveMessage}>Удалить сообщение</Button>
           	</div>
           }
-		  trigger="click"
+		      trigger="click"
         >
           <div className="message__icon-actions">
-			<Button
-	          type='ghost'
-	          shape='circle'
-	          icon={<EllipsisOutlined style={{ fontSize: '22px' }} />}
-	        />
+            <Button
+              type='ghost'
+              shape='circle'
+              icon={<EllipsisOutlined style={{ fontSize: '22px' }} />}
+            />
           </div>
         </Popover>
 
