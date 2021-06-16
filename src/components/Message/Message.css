@@ -5,6 +5,10 @@
   position: relative;
 }
 
+.message-content:hover .message__icon-actions {
+	display: block
+}
+
 .message-avatar {
   display: flex;
   flex-direction: column-reverse;
@@ -82,6 +86,14 @@
 
 .message__icon--no-readed {
   left: -20px;
+}
+
+.message__icon-actions {
+  display: none;
+  transform: rotate(90deg);
+  position: absolute;
+  top: -5px;
+  left: -31px;
 }
 
 .message--isme {
