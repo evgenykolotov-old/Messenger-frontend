@@ -32,7 +32,7 @@ const Sidebar = () => {
   }
   const onAddDialog = async () => {
   	try {
-  	  await axios.post('dialogs', { partner: selectedUserId });
+  	  await axios.post('dialogs', { partner: selectedUserId, text: messageText });
   	  setIsLoading(false);
   	  onClose();
   	} catch (error) {
